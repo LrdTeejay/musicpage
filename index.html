@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="con">
+    <h1>MUSIC.LOADED.COM</h1>
+    <h2 class="book">WELCOME TO MY MUSIC PAGE</h2>
+<div class="controls">
+    <button id="btnPlay">Play</button>
+    <button id="btnPause">Pause</button>
+    <button id="btnStop">Stop</button>
+    <button id="btnVolUp">Volume Up</button>
+    <button id="btnVolDown">Volume Down</button>
+    <button id="changeSong">Next Song</button>
+    <button id="previous">Previous</button>
+</div>
+    <h3 class="click">Here are the list of Playlist in order</h3>
+    <ul>
+        <li>Ruger Champion</li>
+        <li>Barry Jhay Shako</li>
+        <li>Zinoleesky COD</li>
+        <li>Bella Shmurda</li>
+    </ul>
+</div> <br>
+<script>
+    const btnPlay = document.getElementById("btnPlay");
+    const btnPause = document.getElementById("btnPause");
+    const btnStop = document.getElementById("btnStop");
+    const audioPlayer = new Audio ("Ruger.mp3");
+    const btnVolUp = document.getElementById("btnVolUp");
+    const btnVolDown = document.getElementById("btnVolDown");
+    const changeSong = document.getElementById("changeSong");
+    const previous = document.getElementById("previous");
+    var playlist = ["Ruger.mp3", "Barry.Jhay.mp3", "Zinoleesky.mp3", "Bella.Shmurda.mp3"]
+    let index = 0;
+    btnPlay.addEventListener("click", (e) =>{
+            audioPlayer.play();
+        });
+     btnPause.addEventListener("click", (e) =>{
+            audioPlayer.pause();
+    });
+    btnStop.addEventListener("click", (e) =>{
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+    });
+    btnVolUp.addEventListener("click", (e) =>{
+        audioPlayer.volume += .1;
+    });
+    btnVolDown.addEventListener("click", (e) =>{
+        audioPlayer.volume -= .1;
+    });
+    changeSong.addEventListener("click", function(){
+        index++;if(index === playlist.length){
+        index = 0;
+        audioPlayer.play();
+    };
+        audioPlayer.src = playlist[index];
+        audioPlayer.play();
+    });
+    previous.addEventListener("click", function(){
+        index--;
+        if(index < 0){
+        index = playlist.length - 1;
+        audioPlayer.play();
+    };
+        audioPlayer.src = playlist[index];
+        audioPlayer.play();
+    });
+</script>
+</body>
+
+</html>
